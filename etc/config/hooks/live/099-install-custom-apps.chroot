@@ -113,11 +113,12 @@ sudo rm /etc/calamares/modules/*386*.conf
 
 sudo echo '---
 dontChroot: false
-timeout: 120
+timeout: 30
 firmwareType:
     "*":
         - "-rm /etc/apt/sources.list"
-        - command: "-touch /etc/apt/sources.list && cat >> /etc/apt/sources.list << __EOF__
+        - command: "-touch /etc/apt/sources.list"
+        - command: "-cat >> /etc/apt/sources.list << __EOF__
 deb http://ports.ubuntu.com/ubuntu-ports/ ./devel main universe multiverse restricted
 deb-src http://ports.ubuntu.com/ubuntu-ports/ ./devel main universe multiverse restricted
 deb http://ports.ubuntu.com/ubuntu-ports/ ./devel-updates main universe multiverse restricted
