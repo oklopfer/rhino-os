@@ -111,7 +111,7 @@ sudo sed -i 's/lubuntu/rhino/g' /etc/calamares/settings.conf
 
 sudo rm /etc/calamares/modules/*386*.conf
 sudo rm /etc/calamares/modules/automirror.conf
-sudo touch /etc/calamares/modules/automirror.conf
+
 sudo echo '---
 dontChroot: false
 timeout: 30
