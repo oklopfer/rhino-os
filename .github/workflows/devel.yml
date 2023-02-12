@@ -1,4 +1,4 @@
-name: RL OS ISO Generation arm64
+name: RL OS ISO Generation
 
 on:
   workflow_dispatch
