@@ -43,6 +43,7 @@ mkdir -p /etc/skel/.config/Kvantum
 echo "theme=KvRhinoDark" >> /home/rhino/.config/Kvantum/kvantum.kvconfig
 echo "theme=KvRhinoDark" >> /etc/skel/.config/Kvantum/kvantum.kvconfig
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+sudo xfconf-query -c xsettings -p /Net/ThemeName --set "Yaru-purple-dark"
 
 mkdir -p /home/rhino/Desktop
 echo '[Desktop Entry]
@@ -112,25 +113,11 @@ sudo sed -i 's/lubuntu/rhino/g' /etc/calamares/settings.conf
 
 sudo rm /etc/calamares/modules/*386*.conf
 sudo rm /etc/calamares/modules/automirror.conf
-
-sudo echo '---
-dontChroot: false
-timeout: 30
-script:
-    "*":
-        - command: "-rm /etc/apt/sources.list"
-        - command: "-touch /etc/apt/sources.list"
-        - command: "-cat >> /etc/apt/sources.list << __EOF__
-deb http://ports.ubuntu.com/ubuntu-ports/ ./devel main universe multiverse restricted
-deb-src http://ports.ubuntu.com/ubuntu-ports/ ./devel main universe multiverse restricted
-deb http://ports.ubuntu.com/ubuntu-ports/ ./devel-updates main universe multiverse restricted
-deb-src http://ports.ubuntu.com/ubuntu-ports/ ./devel-updates main universe multiverse restricted
-deb http://ports.ubuntu.com/ubuntu-ports/ ./devel-security main universe multiverse restricted
-deb-src http://ports.ubuntu.com/ubuntu-ports/ ./devel-security main universe multiverse restricted
-# deb http://ports.ubuntu.com/ubuntu-ports/ ./devel-backports main universe multiverse restricted
-# deb-src http://ports.ubuntu.com/ubuntu-ports/ ./devel-backports main universe multiverse restricted
-deb http://ports.ubuntu.com/ubuntu-ports/ ./devel-proposed multiverse universe restricted main
-__EOF__"' | sudo tee -a /etc/calamares/modules/after_automirror_context.conf
+sudo rm /lib/aarch64-linux-gnu/calamares/modules/automirror -r
+cd /lib/aarch64-linux-gnu/calamares/modules/
+sudo git clone https://github.com/oklopfer/automirror/ -b arm64
+sudo cp /lib/aarch64-linux-gnu/calamares/modules/automirror/automirror.conf /etc/calamares/modules/automirror.conf
+cd ~
 
 sudo rm /etc/lightdm/lightdm-gtk-greeter.conf
 ( cd /etc/lightdm/ && sudo wget https://raw.githubusercontent.com/rhino-linux/lightdm/main/lightdm-gtk-greeter.conf && sudo wget https://github.com/rhino-linux/lightdm/raw/main/rhino-blur.png )
