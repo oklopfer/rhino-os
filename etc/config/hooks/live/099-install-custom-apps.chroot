@@ -19,7 +19,7 @@ sudo chown "rhino" -cR "/var/cache/pacstall"
 sudo apt-get install epiphany-browser -yq
 
 pushd /home/rhino
-HOME=/home/rhino sudo runuser -m -u rhino -- sh -c 'pacstall -PI nala-deb rhino-linux-xfce4-config-git quintom-cursor-theme-git rhino-kvantum-theme-git rhino-plymouth-theme-git rhino-setup-git rhino-pkg-git rhino-neofetch-git linux-kernel-arm64'
+HOME=/home/rhino sudo runuser -m -u rhino -- sh -c 'pacstall -PI nala-deb rhino-linux-xfce4-config-git quintom-cursor-theme-git rhino-kvantum-theme-git rhino-plymouth-theme-git rhino-setup-git rhino-pkg-git linux-kernel-arm64 rhino-neofetch-git'
 popd
 
 sudo sed -i 's/%sudo ALL=(ALL) NOPASSWD:ALL//' /etc/sudoers
