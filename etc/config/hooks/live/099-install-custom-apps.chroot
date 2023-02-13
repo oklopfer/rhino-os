@@ -229,5 +229,6 @@ sudo chown "rhino" -cR /home/rhino/Desktop
 
 sudo apt-get clean
 sudo apt-get remove linux*5.19* -yq
+sudo update-initramfs -c -k all
 # These are not needed maybe
 #sudo apt-get autoremove --purge -f -yq aspell-en aspell bolt
